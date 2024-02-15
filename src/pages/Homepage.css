@@ -1,0 +1,12 @@
+.carrousel img{
+    height: 200px;
+}
+.carrousel{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.slick-next {
+    right: -0;
+}
