@@ -69,6 +69,16 @@ function Homepage() {
               <p>Women&apos;s clothing</p>
             </Link>
           </li>
+          <li>
+            <Link to="/category/jewelery">
+              <p>Jewelery</p>
+            </Link>
+          </li>
+          <li>
+            <Link to="/category/electronics">
+              <p>Electronics</p>
+            </Link>
+          </li>
         </ul>
       </nav>
       <h2>Featured Products</h2>

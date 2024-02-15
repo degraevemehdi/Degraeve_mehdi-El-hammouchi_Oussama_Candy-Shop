@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 function CategoryPage() {
@@ -23,17 +23,22 @@ function CategoryPage() {
 
   return (
     <div>
+      <Link to="/">
+        <h1>Home</h1>
+      </Link>
       <h2>Catégorie : {decodeURIComponent(categoryName)}</h2>
       <div>
         {products.map((product) => (
           <div key={product.id}>
-            <img
-              src={product.image}
-              alt={product.title}
-              style={{ width: "100px", height: "auto" }}
-            />
-            <p>{product.title}</p>
-            <p>${product.price}</p>
+            <Link to={`/product/${product.id}`}>
+              <img
+                src={product.image}
+                alt={product.title}
+                style={{ width: "100px", height: "auto" }}
+              />
+              <p>{product.title}</p>
+              <p>${product.price}</p>
+            </Link>
           </div>
         ))}
       </div>
