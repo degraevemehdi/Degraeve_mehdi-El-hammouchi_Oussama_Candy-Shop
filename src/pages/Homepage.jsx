@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import './Homepage.css'
 import axios from 'axios';
 import Slider from 'react-slick';
+import { Link } from "react-router-dom";
 
 function Homepage() {
     const[products, setProducts] = useState([]);
@@ -56,16 +57,22 @@ function Homepage() {
         
         return (
             <div>
-            <h2>Featured Products</h2>
-            <Slider {...settings}>
-                {products.map(product => (
-                <div className="carrousel" key={product.id}>
-                    <img src={product.image} alt={product.title} />
-                    <h3>{product.title}</h3>
-                    <p>${product.price}</p>
-                </div>
-                ))}
-            </Slider>
+                <nav>
+                    <ul>
+                        <li><Link to="/category/books">Livres</Link></li>
+                        <li><Link to="/category/electronics">Électronique</Link></li>
+                    </ul>
+                </nav>
+                <h2>Featured Products</h2>
+                <Slider {...settings}>
+                    {products.map(product => (
+                    <div className="carrousel" key={product.id}>
+                        <img src={product.image} alt={product.title} />
+                        <h3>{product.title}</h3>
+                        <p>${product.price}</p>
+                    </div>
+                    ))}
+                </Slider>
             </div>
         );
 }

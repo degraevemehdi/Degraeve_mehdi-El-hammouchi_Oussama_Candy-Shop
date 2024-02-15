@@ -1,3 +1,7 @@
+.nav-content{
+    color: black;
+    
+}
 .carrousel img{
     height: 200px;
 }
@@ -8,5 +12,5 @@
     
 }
 .slick-next {
-    right: -0;
+    right: 0;
 }
