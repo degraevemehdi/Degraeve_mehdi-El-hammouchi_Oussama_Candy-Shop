@@ -4,6 +4,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Homepage from "./pages/Homepage";
 import CategoryPage from "./pages/CategoryPage";
 import ProductDetails from "./pages/ProductDetails";
+import Login from "./pages/Login";
 import "./App.css";
 import Basket from "./pages/Basket";
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
     path: "/basket",
     element: <Basket />,
   },
+  {
+    path : '/login',
+    element : <Login />
+  }
 ]);
 
 function App() {

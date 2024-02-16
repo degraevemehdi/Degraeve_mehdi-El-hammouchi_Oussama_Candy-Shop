@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
+  const dispatch = useDispatch();
+  const isItemAddedd = useSelector((state) => state.basket.isItemAdded);
+
 
   useEffect(() => {
     axios
@@ -20,6 +25,16 @@ const ProductDetails = () => {
   if (!product) {
     return <div>Loading...</div>;
   }
+  const addToBasket = (product) => {
+    dispatch({
+      type: "ADD_TO_BASKET",
+      payload: product,
+    });
+
+    setTimeout(() => {
+      dispatch({ type: "RESET_ADD_STATUS" });
+    }, 3000);
+  };
 
   return (
     <div>
@@ -37,6 +52,7 @@ const ProductDetails = () => {
       <p>${product.price}</p>
 
       <p>Product Description: {product.description}</p>
+      <button onClick={() => addToBasket(product)}>Add To Basket</button>
     </div>
   );
 };

@@ -57,6 +57,7 @@ function CategoryPage() {
               <p>{product.title}</p>
               <p>${product.price}</p>
             </Link>
+            <button onClick={() => addToBasket(product)}>Add To Basket</button>
           </div>
         ))}
       </div>

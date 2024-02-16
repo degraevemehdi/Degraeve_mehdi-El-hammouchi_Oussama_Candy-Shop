@@ -5,9 +5,16 @@ import axios from "axios";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 function Homepage() {
+  
   const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  const user = useSelector((state) => state.auth.user);
+
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
@@ -17,6 +24,19 @@ function Homepage() {
         const randomProducts = data.sort(() => 0.5 - Math.random()).slice(0, 4);
         setProducts(randomProducts);
         console.log(` liste produits : ${products}`);
+      })
+      .catch((error) => {
+        console.log(`Error : ${error}`);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get("https://fakestoreapi.com/products")
+      .then((response) => {
+        const data = response.data;
+        console.log(response);
+        setAllProducts(data);
+        console.log(` liste produits : ${allProducts}`);
       })
       .catch((error) => {
         console.log(`Error : ${error}`);
@@ -57,10 +77,11 @@ function Homepage() {
 
   return (
     <div>
-      <Link to="/basket">
-        <p>Basket</p>
-      </Link>
-      <nav>
+      <nav className="nav-contain">
+        <Link to="/basket">
+          <p>Basket</p>
+        </Link>
+        <Link to="/login"><h1>{isLogin ? `Welcome, ${user.username}` : "Guest"}</h1></Link>
         <ul>
           <li>
             <Link to="/category/men's clothing">
@@ -94,6 +115,17 @@ function Homepage() {
           </div>
         ))}
       </Slider>
+      {allProducts.map((product) => (
+        
+        <div key={product.id}>
+          <Link to={`/product/${product.id}`}>
+          <img src={product.image} alt={product.title}
+          style={{ width: "100px", height: "auto" }} />
+          <h3>{product.title}</h3>
+            <p>${product.price}</p>
+            </Link>
+        </div>
+      ))}
     </div>
   );
 }

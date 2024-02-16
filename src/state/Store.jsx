@@ -1,9 +1,11 @@
 // Store.jsx
 import { configureStore } from "@reduxjs/toolkit";
+import authReducer from '../features/authSlice'
 
 const initialState = {
   basket: [],
   isItemAdded: false,
+
 };
 
 const basketReducer = (state = initialState, action) => {
@@ -43,8 +45,10 @@ const basketReducer = (state = initialState, action) => {
 
 const Store = configureStore({
   reducer: {
-    basket: basketReducer,
+    auth: authReducer, // Slice généré par Redux Toolkit pour l'authentification
+    basket: basketReducer, // Votre reducer personnalisé pour le panier
   },
 });
+
 
 export default Store;

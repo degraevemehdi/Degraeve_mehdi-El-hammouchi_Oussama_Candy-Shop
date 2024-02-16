@@ -1,5 +1,6 @@
 .nav-content{
     color: black;
+    display: flex;
     
 }
 .carrousel img{
