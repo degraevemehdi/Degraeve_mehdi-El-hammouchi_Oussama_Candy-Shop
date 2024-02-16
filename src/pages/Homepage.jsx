@@ -81,7 +81,6 @@ function Homepage() {
         <Link to="/basket">
           <p>Basket</p>
         </Link>
-        <Link to="/login"><h1>{isLogin ? `Welcome, ${user.username}` : "Guest"}</h1></Link>
         <ul>
           <li>
             <Link to="/category/men's clothing">
@@ -104,6 +103,8 @@ function Homepage() {
             </Link>
           </li>
         </ul>
+        <Link to="/login"><h1>{isLogin ? `Welcome, ${user.username}` : "Guest"}</h1></Link>
+
       </nav>
       <h2>Featured Products</h2>
       <Slider {...settings}>

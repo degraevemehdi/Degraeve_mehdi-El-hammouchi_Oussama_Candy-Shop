@@ -1,7 +1,19 @@
-.nav-content{
+.nav-contain{
     color: black;
     display: flex;
-    
+    background-color: #E6E6EA;
+    justify-content: space-evenly;
+    align-items: center;
+    ul{
+        display: flex;
+        gap: 10px;
+        list-style: none;
+        
+    }
+    a{
+        text-decoration: none;
+    }
+   
 }
 .carrousel img{
     height: 200px;
