@@ -38,9 +38,17 @@ const basketReducer = (state = initialState, action) => {
         ...state,
         isItemAdded: false,
       };
+      case "EMPTY_BASKET": {
+        return {
+          ...state,
+          basket: [], // Réinitialise le tableau du panier
+          isItemAdded: false, // Optionnel, dépend de votre logique d'application
+        };
+      }
     default:
       return state;
   }
+  
 };
 
 const Store = configureStore({
