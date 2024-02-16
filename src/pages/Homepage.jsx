@@ -57,6 +57,9 @@ function Homepage() {
 
   return (
     <div>
+      <Link to="/basket">
+        <p>Basket</p>
+      </Link>
       <nav>
         <ul>
           <li>

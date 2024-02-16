@@ -23,6 +23,9 @@ const ProductDetails = () => {
 
   return (
     <div>
+      <Link to="/basket">
+        <p>Basket</p>
+      </Link>
       <Link to="/">
         <h1>Home</h1>
       </Link>
