@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import "./CategoryPage.css";
 
 function CategoryPage() {
   const { categoryName } = useParams();
@@ -36,24 +37,24 @@ function CategoryPage() {
   };
 
   return (
-    <div>
-      <Link to="/basket">
-        <h1>Basket</h1>
-      </Link>
-      <Link to="/">
-        <h1>Home</h1>
-      </Link>
-      <h2>Catégorie : {decodeURIComponent(categoryName)}</h2>
-      {isItemAdded && <p>Item successfully added to the basket!</p>}
-      <div>
+    <div className="category_container">
+      <nav>
+        <Link to="/">
+          <i className="fa-solid fa-arrow-left"></i>
+        </Link>
+        <Link to="/basket">
+          <i className="fa-solid fa-basket-shopping"></i>
+        </Link>
+      </nav>
+
+      <h2>Category : {decodeURIComponent(categoryName)}</h2>
+
+      <div className="women_clothing">
+        {isItemAdded && <p>Item successfully added to the basket!</p>}
         {products.map((product) => (
-          <div key={product.id}>
+          <div className="card" key={product.id}>
             <Link to={`/product/${product.id}`}>
-              <img
-                src={product.image}
-                alt={product.title}
-                style={{ width: "100px", height: "auto" }}
-              />
+              <img src={product.image} alt={product.title} />
               <p>{product.title}</p>
               <p>${product.price}</p>
             </Link>

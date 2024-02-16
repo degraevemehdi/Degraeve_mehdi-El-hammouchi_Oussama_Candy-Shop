@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-
+import "./ProductDetails.css";
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const dispatch = useDispatch();
   const isItemAddedd = useSelector((state) => state.basket.isItemAdded);
-
 
   useEffect(() => {
     axios
@@ -37,22 +36,28 @@ const ProductDetails = () => {
   };
 
   return (
-    <div>
-      <Link to="/basket">
-        <p>Basket</p>
-      </Link>
-      <Link to="/">
-        <h1>Home</h1>
-      </Link>
-      <h2>Product Details</h2>
-      <img src={product.image} alt={product.title} />
-      <p>{product.title}</p>
-      <p>⭐{product.rating.rate}</p>
+    <div className="product_details_container">
+      <nav>
+        <Link to="/">
+          <i className="fa-solid fa-arrow-left"></i>
+        </Link>
+        <Link to="/basket">
+          <i className="fa-solid fa-basket-shopping"></i>
+        </Link>
+      </nav>
 
-      <p>${product.price}</p>
+      <div className="product_detail">
+        <h2>Product Details</h2>
 
-      <p>Product Description: {product.description}</p>
-      <button onClick={() => addToBasket(product)}>Add To Basket</button>
+        <img src={product.image} alt={product.title} />
+        <p>{product.title}</p>
+        <p>⭐{product.rating.rate}</p>
+
+        <p>${product.price}</p>
+
+        <p>Product Description: {product.description}</p>
+        <button onClick={() => addToBasket(product)}>Add To Basket</button>
+      </div>
     </div>
   );
 };

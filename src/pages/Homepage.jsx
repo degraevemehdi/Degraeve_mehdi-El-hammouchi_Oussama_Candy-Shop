@@ -7,9 +7,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
 function Homepage() {
-  
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const isLogin = useSelector((state) => state.auth.isLogin);
@@ -42,6 +40,10 @@ function Homepage() {
         console.log(`Error : ${error}`);
       });
   }, []);
+  const displayFirst5Words = (title) => {
+    const words = title.split(" ").slice(0, 5).join(" ");
+    return words.length < title.length ? words + "..." : words;
+  };
   const settings = {
     dots: true,
     infinite: true,
@@ -77,10 +79,14 @@ function Homepage() {
 
   return (
     <div>
+      <div className="band_container">
+        <div className="band">
+          <h1>WELCOME TO KEISLE STORE</h1>
+          <p>Use code &quot;igris10&quot; to get 10% discount</p>
+          <p>Get the best products at the best prices</p>
+        </div>
+      </div>
       <nav className="nav-contain">
-        <Link to="/basket">
-          <p>Basket</p>
-        </Link>
         <ul>
           <li>
             <Link to="/category/men's clothing">
@@ -103,30 +109,43 @@ function Homepage() {
             </Link>
           </li>
         </ul>
-        <Link to="/login"><h1>{isLogin ? `Welcome, ${user.username}` : "Guest"}</h1></Link>
-
+        <Link to="/login" className="user_login">
+          <i className="fa-solid fa-user"></i>
+          <p>{isLogin ? `Welcome, ${user.username}` : "Guest"}</p>
+        </Link>
+        <Link to="/basket">
+          <i className="fa-solid fa-basket-shopping"></i>
+        </Link>
       </nav>
-      <h2>Featured Products</h2>
+      <div className="carousel_container">
+        <h2>Featured Products</h2>
+      </div>
+
       <Slider {...settings}>
         {products.map((product) => (
           <div className="carrousel" key={product.id}>
             <img src={product.image} alt={product.title} />
-            <h3>{product.title}</h3>
-            <p>${product.price}</p>
+            <Link to={`/product/${product.id}`}>
+              <h3>{displayFirst5Words(product.title)}</h3>
+              <p>${product.price}</p>
+            </Link>
           </div>
         ))}
       </Slider>
-      {allProducts.map((product) => (
-        
-        <div key={product.id}>
-          <Link to={`/product/${product.id}`}>
-          <img src={product.image} alt={product.title}
-          style={{ width: "100px", height: "auto" }} />
-          <h3>{product.title}</h3>
-            <p>${product.price}</p>
+
+      <div className="allProducts">
+        {allProducts.map((product) => (
+          <div className="card" key={product.id}>
+            <Link to={`/product/${product.id}`}>
+              <div className="img_container">
+                <img src={product.image} alt={product.title} />
+              </div>
+              <h3>{displayFirst5Words(product.title)}</h3>
+              <p>${product.price}</p>
             </Link>
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
