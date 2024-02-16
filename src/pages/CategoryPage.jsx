@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import "./CategoryPage.css";
 
@@ -8,7 +8,6 @@ function CategoryPage() {
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
-  const isItemAdded = useSelector((state) => state.basket.isItemAdded);
 
   useEffect(() => {
     axios
@@ -40,7 +39,7 @@ function CategoryPage() {
     <div className="category_container">
       <nav>
         <Link to="/">
-          <i className="fa-solid fa-arrow-left"></i>
+          <i className="fa-solid fa-house"></i>
         </Link>
         <Link to="/basket">
           <i className="fa-solid fa-basket-shopping"></i>
@@ -50,7 +49,6 @@ function CategoryPage() {
       <h2>Category : {decodeURIComponent(categoryName)}</h2>
 
       <div className="women_clothing">
-        {isItemAdded && <p>Item successfully added to the basket!</p>}
         {products.map((product) => (
           <div className="card" key={product.id}>
             <Link to={`/product/${product.id}`}>

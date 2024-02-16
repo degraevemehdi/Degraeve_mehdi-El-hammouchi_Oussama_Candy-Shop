@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./ProductDetails.css";
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const dispatch = useDispatch();
-  const isItemAddedd = useSelector((state) => state.basket.isItemAdded);
 
   useEffect(() => {
     axios
@@ -39,7 +38,7 @@ const ProductDetails = () => {
     <div className="product_details_container">
       <nav>
         <Link to="/">
-          <i className="fa-solid fa-arrow-left"></i>
+          <i className="fa-solid fa-house"></i>
         </Link>
         <Link to="/basket">
           <i className="fa-solid fa-basket-shopping"></i>
