@@ -37,8 +37,8 @@ function CategoryPage() {
                 style={{ width: "100px", height: "auto" }}
               />
               <p>{product.title}</p>
-              <p>${product.price}</p>
             </Link>
+              <p>${product.price}</p>
           </div>
         ))}
       </div>
